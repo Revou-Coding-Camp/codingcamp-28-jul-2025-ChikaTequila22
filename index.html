@@ -1,1 +1,53 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company Profile</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="navbar">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#profile">Our Profile</a></li>
+        <li><a href="#contact">Message Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home">
+    <h1 id="greeting">Hi </h1>
+  </section>
+
+  <section id="profile">
+    <img src="/image/accenture.gif" alt="Company Banner" class="banner">
+    <h2>About the Company</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+    <h3>Vision</h3>
+    <p>To be a global leader in innovation and technology.</p>
+    <h3>Mission</h3>
+    <ul>
+      <li>Deliver high-quality products.</li>
+      <li>Provide excellent customer service.</li>
+      <li>Foster innovation and growth.</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Message Us</h2>
+    <form id="messageForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div id="formResult"></div>
+  </section>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
 
