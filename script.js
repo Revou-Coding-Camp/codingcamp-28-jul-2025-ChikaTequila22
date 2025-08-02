@@ -1,37 +1,47 @@
-// script.js
+// Carousel
+const slides = document.querySelectorAll('.carousel img');
+let currentSlide = 0;
 
-// Greet user with "Hi [Name]"
-function greetUser() {
-  const name = prompt("What's your name?");
-  const greetingContainer = document.getElementById("greeting");
-  if (name && greetingContainer) {
-    greetingContainer.textContent = `Hi ${name}`;
-  }
-}
-
-greetUser();
-
-// Handle "Message Us" form submission
-const form = document.getElementById("messageForm");
-if (form) {
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const name = document.getElementById("formName").value.trim();
-    const email = document.getElementById("formEmail").value.trim();
-    const message = document.getElementById("formMessage").value.trim();
-    const output = document.getElementById("formOutput");
-
-    if (!name || !email || !message) {
-      alert("All fields must be filled out.");
-      return;
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
     }
-
-    output.innerHTML = `
-      <h3>Form Submission:</h3>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong> ${message}</p>
-    `;
   });
 }
+
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}, 3000);
+
+// Handle Form Submit with Confirmation
+document.getElementById('messageForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  // Ambil data form
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+
+  // Isi modal dengan data
+  document.getElementById('confirmName').innerText = name;
+  document.getElementById('confirmEmail').innerText = email;
+  document.getElementById('confirmMessage').innerText = message;
+
+  // Tampilkan modal
+  document.getElementById('confirmModal').style.display = 'block';
+
+  // Jika konfirmasi diklik
+  document.getElementById('confirmSend').onclick = () => {
+    document.getElementById('formResult').innerText = `Thanks, ${name}, your message has been sent!`;
+    document.getElementById('messageForm').reset();
+    document.getElementById('confirmModal').style.display = 'none';
+  };
+
+  // Jika batal diklik
+  document.getElementById('cancelSend').onclick = () => {
+    document.getElementById('confirmModal').style.display = 'none';
+  };
+});
